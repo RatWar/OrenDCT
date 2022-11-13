@@ -24,7 +24,6 @@ import com.besaba.anvarov.orentsd.room.DocumentData
 import com.besaba.anvarov.orentsd.room.NomenData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kotlinpermissions.KotlinPermissions
-import net.gotev.uploadservice.ftp.FTPUploadRequest
 import org.json.JSONArray
 import java.io.File
 import java.io.IOException
@@ -103,8 +102,6 @@ class MainActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { onDocument() }
-        val ftp = findViewById<FloatingActionButton>(R.id.ftp)
-        ftp.setOnClickListener { onUploadFTP() }
         val count = mAllViewModel.countNomen().toString()
         binding.countNomen.text = count
     }
@@ -209,17 +206,6 @@ class MainActivity : AppCompatActivity() {
         val numDoc = mAllViewModel.getNumberDocument()
         intent.putExtra("documentNumber", numDoc)
         startActivity(intent)
-    }
-
-    private fun onUploadFTP() {
-        try {
-            FTPUploadRequest(this@MainActivity, "ftp://ftp1.oas56.ru", 21)
-                .setUsernameAndPassword("00000000118334", "T08FZVqk")
-                .addFileToUpload("/absolute/path/to/file", "/data")
-                .startUpload()
-        } catch (exc: Exception) {
-            Toast.makeText(this, exc.message, Toast.LENGTH_LONG).show()
-        }
     }
 
     // LeftScan = 27  Scan = 301  RightScan = 80
