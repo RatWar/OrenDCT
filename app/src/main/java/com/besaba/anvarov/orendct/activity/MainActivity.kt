@@ -217,7 +217,6 @@ class MainActivity : AppCompatActivity() {
                 .setUsernameAndPassword("00000000118334", "T08FZVqk")
                 .addFileToUpload("/absolute/path/to/file", "/data")
                 .startUpload()
-            finish()
         } catch (exc: Exception) {
             Toast.makeText(this, exc.message, Toast.LENGTH_LONG).show()
         }
