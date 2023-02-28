@@ -213,11 +213,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun onUploadFTP() {
         try {
-            val request = FTPUploadRequest(this@MainActivity, "ftp://ftp1.oas56.ru", 21)
+            FTPUploadRequest(this@MainActivity, "ftp://ftp1.oas56.ru", 21)
                 .setUsernameAndPassword("00000000118334", "T08FZVqk")
                 .addFileToUpload("/absolute/path/to/file", "/data")
                 .startUpload()
-//            request.startUpload()
             finish()
         } catch (exc: Exception) {
             Toast.makeText(this, exc.message, Toast.LENGTH_LONG).show()
