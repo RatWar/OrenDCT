@@ -29,6 +29,9 @@ import org.json.JSONArray
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
+import org.apache.commons.net.ftp.FTP
+import org.apache.commons.net.ftp.FTPClient
+import org.apache.commons.net.ftp.FTPReply
 
 class MainActivity : AppCompatActivity() {
 
@@ -213,10 +216,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun onUploadFTP() {
         try {
-            FTPUploadRequest(this@MainActivity, "ftp://ftp1.oas56.ru", 21)
-                .setUsernameAndPassword("00000000118334", "T08FZVqk")
-                .addFileToUpload("/absolute/path/to/file", "/data")
-                .startUpload()
+//            FTPUploadRequest(this@MainActivity, "ftp://ftp1.oas56.ru", 21)
+//                .setUsernameAndPassword("00000000118334", "T08FZVqk")
+//                .addFileToUpload("/absolute/path/to/file", "/data")
+//                .startUpload()
+            val con = FTPClient()
+            con.connectTimeout = 2000
+//            con.login("00000000118334", "T08FZVqk")
+//            con.connect("ftp1.oas56.ru", 21)
+//            con.login("obmen_gauzoimc", "81L82sKZ")
+            con.connect("ftp1.oas-orb.ru", 21)
+            if (FTPReply.isPositiveCompletion(con.replyCode)) {
+                //все круто
+                val i = 1
+            }
         } catch (exc: Exception) {
             Toast.makeText(this, exc.message, Toast.LENGTH_LONG).show()
         }
